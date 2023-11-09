@@ -9,16 +9,21 @@
 
     <b-card-text>
       <b-form class="login-form needs-validation" @submit="onSubmit">
-        <sas-input v-model="form.email" label="Email" required type="email" />
+        <InputComponent
+          v-model="form.email"
+          label="Email"
+          required
+          type="email"
+        />
 
-        <sas-input
+        <InputComponent
           v-model="form.password"
           label="Password"
           type="password"
           required
         />
 
-        <sas-button type="submit" block>Login</sas-button>
+        <ButtonComponent type="submit" block>Login</ButtonComponent>
       </b-form>
     </b-card-text>
   </b-card>
@@ -36,8 +41,15 @@ export default {
   methods: {
     onSubmit(event) {
       event.preventDefault()
-      // this.$store.commit('user/login', this.form)
-      // this.$router.push('/house-rules')
+      // this.$store.dispatch('user/loginUser', { login: { email: this.form.email, password: this.form.password } })
+      this.$store.commit(
+        'user/login',
+        Object.assign(
+          {},
+          { login: { email: this.form.email, password: this.form.password } }
+        )
+      )
+      this.$router.push('/house-rules')
     },
   },
 }
