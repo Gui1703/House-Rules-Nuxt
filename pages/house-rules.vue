@@ -60,7 +60,7 @@
 <script>
 export default {
   name: 'HouseRulesPage',
-  // middleware: ['auth'],
+  middleware: ['auth'],
   data: () => ({
     tableFields: [
       { key: 'id', sortable: true },

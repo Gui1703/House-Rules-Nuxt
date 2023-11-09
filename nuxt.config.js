@@ -49,7 +49,7 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: { baseURL: 'https://sys-dev.searchandstay.com/api/admin' },
 
-  // router: { middleware: ['auth'] },
+  router: { middleware: ['auth'] },
 
   bootstrapVue: { icons: true },
 
