@@ -2,8 +2,8 @@
   <b-card style="max-width: 35rem" class="mb-2 mx-auto mt-4">
     <b-card-title>
       <div class="title">
-        <span>Login Page</span>
-        <img src="~/static/logo.png" alt="Pin Logo" class="pin-logo" />
+        <span>Login</span>
+        <img src="~/static/logo.png" alt="logo-pin" class="pin-logo" />
       </div>
     </b-card-title>
 
@@ -39,17 +39,26 @@ export default {
     },
   }),
   methods: {
-    onSubmit(event) {
+    async onSubmit(event) {
       event.preventDefault()
-      // this.$store.dispatch('user/loginUser', { login: { email: this.form.email, password: this.form.password } })
-      this.$store.commit(
-        'user/login',
-        Object.assign(
-          {},
-          { login: { email: this.form.email, password: this.form.password } }
-        )
-      )
-      this.$router.push('/house-rules')
+      await this.$store
+        .dispatch('user/loginUser', {
+          login: { email: this.form.email, password: this.form.password },
+        })
+        .then(async (res) => {
+          await this.$bvToast.toast(res.message, {
+            title: 'Success',
+            variant: 'success',
+          })
+
+          setTimeout(() => this.$router.push('/house-rules'), 2000)
+        })
+        .catch((e) => {
+          this.$bvToast.toast(e.response.data.data, {
+            title: 'Error',
+            variant: 'danger',
+          })
+        })
     },
   },
 }
@@ -68,5 +77,6 @@ export default {
 .login-form {
   display: grid;
   gap: 0.75rem;
+  align-items: center;
 }
 </style>
