@@ -1,14 +1,12 @@
 <template>
   <div class="default">
-    <navbar />
+    <NavBar />
     <nuxt />
   </div>
 </template>
 
 <script>
-export default {
-
-}
+export default { name: 'default' }
 </script>
 
 <style scoped>

@@ -1,6 +1,6 @@
 <template>
   <div class="navbar">
-    <img src="~/static/logo_text.png" alt="Logo SAS" class="logo" />
+    <img v-if="logged" src="~/static/logo_text.png" alt="logo" class="logo" />
     <b-icon
       v-if="logged"
       icon="box-arrow-right"
