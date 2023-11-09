@@ -1,68 +1,70 @@
-# house_rules
+<h1 align="center">House Rules</h1>
 
-## Build Setup
+<p align="center">
+  <img alt="Github top language" src="https://img.shields.io/github/languages/top/Gui1703/House-Rules-Nuxt?color=56BEB8">
+
+  <img alt="Github language count" src="https://img.shields.io/github/languages/count/Gui1703/House-Rules-Nuxt?color=56BEB8">
+
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/Gui1703/House-Rules-Nuxt?color=56BEB8">
+</p>
+
+<p align="center">
+  <a href="#dart-about">Sobre</a> &#xa0; | &#xa0; 
+  <a href="#sparkles-features">Características</a> &#xa0; | &#xa0;
+  <a href="#rocket-technologies">Tecnologias</a> &#xa0; | &#xa0;
+  <a href="#white_check_mark-requirements">Requerimentos</a> &#xa0; | &#xa0;
+  <a href="#checkered_flag-starting">Inicialização</a> &#xa0; | &#xa0;
+  <a href="https://github.com/Gui1703" target="_blank">Autor</a>
+</p>
+
+<br>
+
+## :dart: Sobre ##
+
+O projeto foi concebido e implementado utilizando Nuxt 2 Options como base tecnológica. Após a fase de autenticação na tela inicial, a funcionalidade é executada por meio da action do Vuex, transferindo o access_token para o state. Em seguida, o usuário é redirecionado para a interface principal, denominada 'house_rules'. Nesta interface, ocorre a integração com a API fornecida, sendo que o token é incluído em cada requisição, obtido a partir do state.
+
+As operações de edição e exclusão de uma regra foram implementadas em um arquivo separado, utilizando o modal do Bootstrap para a interação do usuário. Além disso, foram criados componentes reutilizáveis, como input, select e button, com o intuito de abstrair as funcionalidades e prevenir a duplicação de código.
+
+Para garantir a segurança do sistema, foi desenvolvida uma middleware que impede o avanço no site caso o usuário não esteja autenticado, proporcionando uma experiência de usuário mais segura e controlada.
+
+## :sparkles: Características ##
+
+:heavy_check_mark: Vuex;\
+:heavy_check_mark: Bootstrap;\
+
+## :rocket: Tecnologias ##
+
+The following tools were used in this project:
+
+- [Nuxt2](https://v2.nuxt.com/)
+- [Vuex](https://vuex.vuejs.org/)
+- [Bootstrap](https://getbootstrap.com/)
+
+## :white_check_mark: Requerimentos ##
+
+Antes de iniciar :checkered_flag:, você precisa ter [Git](https://git-scm.com) e [Node](https://nodejs.org/en/) instalados.
+
+## :checkered_flag: Inicialização ##
 
 ```bash
-# install dependencies
-$ yarn install
+# Clone o projeto
+$ git clone https://github.com/Gui1703/house_rules
 
-# serve with hot reload at localhost:3000
+# Acesso
+$ cd house_rules
+
+# Instalar dependencias
+$ yarn
+
+# Rodar o projeto
 $ yarn dev
 
-# build for production and launch server
-$ yarn build
-$ yarn start
-
-# generate static project
-$ yarn generate
+# O servidor será iniciado em <http://localhost:3000>
 ```
 
-For detailed explanation on how things work, check out the [documentation](https://nuxtjs.org).
 
-## Special Directories
+Feito com :heart: por <a href="https://github.com/Gui1703" target="_blank">Guilherme</a>
 
-You can create the following extra directories, some of which have special behaviors. Only `pages` is required; you can delete them if you don't want to use their functionality.
+&#xa0;
 
-### `assets`
-
-The assets directory contains your uncompiled assets such as Stylus or Sass files, images, or fonts.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/assets).
-
-### `components`
-
-The components directory contains your Vue.js components. Components make up the different parts of your page and can be reused and imported into your pages, layouts and even other components.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/components).
-
-### `layouts`
-
-Layouts are a great help when you want to change the look and feel of your Nuxt app, whether you want to include a sidebar or have distinct layouts for mobile and desktop.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/layouts).
-
-### `pages`
-
-This directory contains your application views and routes. Nuxt will read all the `*.vue` files inside this directory and setup Vue Router automatically.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/get-started/routing).
-
-### `plugins`
-
-The plugins directory contains JavaScript plugins that you want to run before instantiating the root Vue.js Application. This is the place to add Vue plugins and to inject functions or constants. Every time you need to use `Vue.use()`, you should create a file in `plugins/` and add its path to plugins in `nuxt.config.js`.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/plugins).
-
-### `static`
-
-This directory contains your static files. Each file inside this directory is mapped to `/`.
-
-Example: `/static/robots.txt` is mapped as `/robots.txt`.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/static).
-
-### `store`
-
-This directory contains your Vuex store files. Creating a file in this directory automatically activates Vuex.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/store).
+<a href="#top">Voltar ao topo</a>
