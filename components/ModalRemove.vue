@@ -1,24 +1,22 @@
 <template>
-  <div>
-    <b-modal
-      centered
-      :visible="visible"
-      title="Remove HouseRule"
-      @close="handleCancel"
-      @hide="handleCancel"
-    >
-      <div class="modal-text">
-        <span>Do you want to remove this HouseRule?</span>
-      </div>
+  <b-modal
+    centered
+    :visible="visible"
+    title="Remove HouseRule"
+    @close="handleCancel"
+    @hide="handleCancel"
+  >
+    <div class="modal-text">
+      <span>Do you want to remove this HouseRule?</span>
+    </div>
 
-      <template #modal-footer>
-        <ButtonComponent @callback="handleCancel">No</ButtonComponent>
-        <ButtonComponent secondary @callback="handleRemove">
-          Yes
-        </ButtonComponent>
-      </template>
-    </b-modal>
-  </div>
+    <template #modal-footer>
+      <ButtonComponent @callback="handleCancel">No</ButtonComponent>
+      <ButtonComponent secondary @callback="handleRemove">
+        Yes
+      </ButtonComponent>
+    </template>
+  </b-modal>
 </template>
 
 <script>

@@ -16,22 +16,10 @@
 export default {
   name: 'InputComponent',
   props: {
-    value: {
-      type: [String, Number],
-      default: undefined,
-    },
-    label: {
-      type: String,
-      default: '',
-    },
-    type: {
-      type: String,
-      default: 'text',
-    },
-    required: {
-      type: Boolean,
-      default: false,
-    },
+    value: { type: [String, Number], default: undefined },
+    label: { type: String, default: '' },
+    type: { type: String, default: 'text' },
+    required: { type: Boolean, default: false },
   },
   computed: {
     name() {

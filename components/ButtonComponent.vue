@@ -1,37 +1,23 @@
 <template>
-  <div>
-    <b-button
-      class="normal"
-      :class="[{ outlined: outlined, secondary: secondary }]"
-      :type="type"
-      :block="block"
-      @click="$emit('callback')"
-    >
-      <slot />
-    </b-button>
-  </div>
+  <b-button
+    class="normal"
+    :class="[{ outlined: outlined, secondary: secondary }]"
+    :type="type"
+    :block="block"
+    @click="$emit('callback')"
+  >
+    <slot />
+  </b-button>
 </template>
 
 <script>
 export default {
   name: 'ButtonComponent',
   props: {
-    outlined: {
-      type: Boolean,
-      default: false,
-    },
-    secondary: {
-      type: Boolean,
-      default: false,
-    },
-    type: {
-      type: String,
-      default: 'button',
-    },
-    block: {
-      type: Boolean,
-      default: false,
-    },
+    outlined: { type: Boolean, default: false },
+    secondary: { type: Boolean, default: false },
+    type: { type: String, default: 'button' },
+    block: { type: Boolean, default: false },
   },
   emits: ['callback'],
 }

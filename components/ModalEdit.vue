@@ -1,29 +1,27 @@
 <template>
-  <div>
-    <b-modal
-      centered
-      :visible="visible"
-      :title="title"
-      @close="handleClose"
-      @hide="handleClose"
-    >
-      <div v-if="loading">Loading...</div>
+  <b-modal
+    centered
+    :visible="visible"
+    :title="title"
+    @close="handleClose"
+    @hide="handleClose"
+  >
+    <div v-if="loading">Loading...</div>
 
-      <div v-else class="modal-inputs">
-        <InputComponent v-model="houseRule.name" label="Name" />
-        <SelectComponent
-          v-model="houseRule.active"
-          label="Status"
-          :options="selectOptions"
-        />
-      </div>
+    <div v-else class="modal-inputs">
+      <InputComponent v-model="houseRule.name" label="Name" />
+      <SelectComponent
+        v-model="houseRule.active"
+        label="Status"
+        :options="selectOptions"
+      />
+    </div>
 
-      <template #modal-footer>
-        <ButtonComponent @callback="handleClose">Cancel</ButtonComponent>
-        <ButtonComponent secondary @callback="handleSave">Save</ButtonComponent>
-      </template>
-    </b-modal>
-  </div>
+    <template #modal-footer>
+      <ButtonComponent @callback="handleClose">Cancel</ButtonComponent>
+      <ButtonComponent secondary @callback="handleSave">Save</ButtonComponent>
+    </template>
+  </b-modal>
 </template>
 
 <script>
