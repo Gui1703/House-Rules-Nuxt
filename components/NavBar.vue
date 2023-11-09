@@ -1,12 +1,7 @@
 <template>
-  <div class="navbar">
-    <img v-if="logged" src="~/static/logo_text.png" alt="logo" class="logo" />
-    <b-icon
-      v-if="logged"
-      icon="box-arrow-right"
-      class="logout-icon"
-      @click="logoutUser"
-    />
+  <div class="navbar" v-if="logged">
+    <img src="~/static/logo_text.png" alt="logo" class="logo" />
+    <b-icon icon="box-arrow-right" class="logout-icon" @click="logoutUser" />
   </div>
 </template>
 
