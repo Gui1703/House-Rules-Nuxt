@@ -32,10 +32,10 @@ export default {
   methods: {
     async handleRemove() {
       try {
-        await this.$axios.$delete(`/house_rules/${this.id}`, {
+        const data = await this.$axios.$delete(`/house_rules/${this.id}`, {
           headers: { Authorization: this.$store.state.user.token },
         })
-        this.$bvToast.toast('HouseRule deleted successfully!', {
+        this.$bvToast.toast(data.message, {
           title: 'Success',
           variant: 'success',
         })

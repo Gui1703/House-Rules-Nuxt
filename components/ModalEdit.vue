@@ -66,38 +66,28 @@ export default {
   methods: {
     async handleSave() {
       const aux = { house_rules: this.houseRule }
-      if (this.id !== undefined) {
-        try {
-          await this.$axios.$put(`/house_rules/${this.id}`, aux, {
+      let data
+      try {
+        if (this.id !== undefined) {
+          data = await this.$axios.$put(`/house_rules/${this.id}`, aux, {
             headers: { Authorization: this.$store.state.user.token },
           })
-          this.$bvToast.toast('HouseRule updated successfully!', {
-            title: 'Success',
-            variant: 'success',
-          })
-          this.handleClose()
-        } catch (err) {
-          this.$bvToast.toast(err.response.data, {
-            title: 'Error',
-            variant: 'danger',
-          })
-        }
-      } else {
-        try {
-          await this.$axios.$post('/house_rules', aux, {
+        } else {
+          data = await this.$axios.$post('/house_rules', aux, {
             headers: { Authorization: this.$store.state.user.token },
           })
-          this.$bvToast.toast('HouseRule created successfully!', {
-            title: 'Success',
-            variant: 'success',
-          })
-          this.handleClose()
-        } catch (err) {
-          this.$bvToast.toast(err.response.data, {
-            title: 'Error',
-            variant: 'danger',
-          })
         }
+
+        this.$bvToast.toast(data.message, {
+          title: 'Success',
+          variant: 'success',
+        })
+        this.handleClose()
+      } catch (err) {
+        this.$bvToast.toast(err.response.data, {
+          title: 'Error',
+          variant: 'danger',
+        })
       }
     },
     handleClose() {
