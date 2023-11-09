@@ -11,7 +11,13 @@ export default {
       { hid: 'description', name: 'description', content: '' },
       { name: 'format-detection', content: 'telephone=no' },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap',
+      },
+    ],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -38,11 +44,12 @@ export default {
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {
-    // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: '/',
-  },
+  axios: { baseURL: 'https://sys-dev.searchandstay.com/api/admin' },
+
+  // router: { middleware: ['auth'] },
+
+  bootstrapVue: { icons: true },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: { babel: { compact: true } },
 }
