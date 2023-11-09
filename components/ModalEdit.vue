@@ -1,6 +1,7 @@
 <template>
   <div>
     <b-modal
+      centered
       :visible="visible"
       :title="title"
       @close="handleClose"
@@ -29,37 +30,31 @@
 export default {
   name: 'ModalEditComponent',
   props: {
-    visible: {
-      type: Boolean,
-      default: false,
-    },
-    editId: {
-      type: Number,
-      default: undefined,
-    },
+    visible: { type: Boolean, default: false },
+    id: { type: Number, default: undefined },
   },
   emits: ['close'],
   data: () => ({
-    title: 'Register HouseRule',
-    houseRule: {
-      name: '',
-      active: 1,
-    },
+    houseRule: { name: '', active: 1 },
     selectOptions: [
       { label: 'Active', value: 1 },
       { label: 'Inactive', value: 0 },
     ],
     loading: false,
   }),
+
+  computed: {
+    title() {
+      return this.id ? 'Edit HouseRule' : 'Register HouseRule'
+    },
+  },
+
   watch: {
-    async editId() {
-      if (this.editId !== undefined) {
+    async id() {
+      if (this.id !== undefined) {
         this.loading = true
-        this.title = 'Edit HouseRule'
-        const { data } = await this.$axios.$get(`/house_rules/${this.editId}`, {
-          headers: {
-            Authorization: this.$store.state.user.token,
-          },
+        const { data } = await this.$axios.$get(`/house_rules/${this.id}`, {
+          headers: { Authorization: this.$store.state.user.token },
         })
         this.houseRule.name = data.name
         this.houseRule.active = data.active
@@ -67,17 +62,14 @@ export default {
       }
     },
   },
+
   methods: {
     async handleSave() {
-      const aux = {
-        house_rules: this.houseRule,
-      }
-      if (this.editId !== undefined) {
+      const aux = { house_rules: this.houseRule }
+      if (this.id !== undefined) {
         try {
-          await this.$axios.$put(`/house_rules/${this.editId}`, aux, {
-            headers: {
-              Authorization: this.$store.state.user.token,
-            },
+          await this.$axios.$put(`/house_rules/${this.id}`, aux, {
+            headers: { Authorization: this.$store.state.user.token },
           })
           this.$bvToast.toast('HouseRule updated successfully!', {
             title: 'Success',
@@ -93,9 +85,7 @@ export default {
       } else {
         try {
           await this.$axios.$post('/house_rules', aux, {
-            headers: {
-              Authorization: this.$store.state.user.token,
-            },
+            headers: { Authorization: this.$store.state.user.token },
           })
           this.$bvToast.toast('HouseRule created successfully!', {
             title: 'Success',
@@ -127,7 +117,7 @@ export default {
 .b-pagination .active .page-link {
   background-color: #fb3b11;
   border-color: #fb3b11;
-  color: white !important;
+  color: #fff !important;
 }
 .b-pagination .page-item .page-link {
   color: #fb3b11;

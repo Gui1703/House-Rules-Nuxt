@@ -2,9 +2,9 @@
   <div class="wrapper">
     <div class="top">
       <h1>House Rules</h1>
-      <ButtonComponent outlined @callback="edit.modal = true"
-        >Register</ButtonComponent
-      >
+      <ButtonComponent outlined @callback="edit.modal = true">
+        Register
+      </ButtonComponent>
     </div>
 
     <div>
@@ -25,10 +25,16 @@
 
         <template #cell(actions)="data">
           <div class="action-buttons">
-            <ButtonComponent outlined @callback="handleEdit(data.item.id)">
+            <ButtonComponent
+              outlined
+              @callback="handleRemoveOrEdit(data.item.id, 'edit')"
+            >
               <b-icon icon="pencil" />
             </ButtonComponent>
-            <ButtonComponent outlined @callback="handleRemove(data.item.id)">
+            <ButtonComponent
+              outlined
+              @callback="handleRemoveOrEdit(data.item.id, 'remove')"
+            >
               <b-icon icon="trash" />
             </ButtonComponent>
           </div>
@@ -45,14 +51,14 @@
 
     <ModalEdit
       :visible="edit.modal"
-      :edit-id="edit.id"
-      @close="editModalClose"
+      :id="edit.id"
+      @close="modalClose('edit')"
     />
 
     <ModalRemove
       :visible="remove.modal"
-      :remove-id="remove.id"
-      @close="removeModalClose"
+      :id="remove.id"
+      @close="modalClose('remove')"
     />
   </div>
 </template>
@@ -75,53 +81,37 @@ export default {
     houseRules: {},
     currentPage: 1,
     isBusy: false,
-    edit: {
-      modal: false,
-      id: undefined,
-    },
-    remove: {
-      modal: false,
-      id: undefined,
-    },
+    edit: { modal: false, id: undefined },
+    remove: { modal: false, id: undefined },
   }),
+
   watch: {
     currentPage() {
       this.loadHouseRules()
     },
   },
+
   async mounted() {
     await this.loadHouseRules()
   },
+
   methods: {
     async loadHouseRules() {
       this.isBusy = true
       const { data } = await this.$axios.$get('/house_rules', {
-        params: {
-          page: this.currentPage,
-        },
-        headers: {
-          Authorization: this.$store.state.user.token,
-        },
+        params: { page: this.currentPage },
+        headers: { Authorization: this.$store.state.user.token },
       })
       this.houseRules = data
       this.isBusy = false
     },
-    handleEdit(id) {
-      this.edit.modal = true
-      this.edit.id = id
+    handleRemoveOrEdit(id, field) {
+      this[field].modal = true
+      this[field].id = id
     },
-    editModalClose() {
-      this.edit.modal = false
-      this.edit.id = undefined
-      this.loadHouseRules()
-    },
-    handleRemove(id) {
-      this.remove.modal = true
-      this.remove.id = id
-    },
-    removeModalClose() {
-      this.remove.modal = false
-      this.remove.id = undefined
+    modalClose(field) {
+      this[field].modal = false
+      this[field].id = undefined
       this.loadHouseRules()
     },
   },

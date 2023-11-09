@@ -1,6 +1,7 @@
 <template>
   <div>
     <b-modal
+      centered
       :visible="visible"
       title="Remove HouseRule"
       @close="handleCancel"
@@ -24,24 +25,15 @@
 export default {
   name: 'ModalRemoveComponent',
   props: {
-    visible: {
-      type: Boolean,
-      default: false,
-    },
-    removeId: {
-      type: Number,
-      default: undefined,
-    },
+    visible: { type: Boolean, default: false },
+    id: { type: Number, default: undefined },
   },
   emits: ['close'],
-  data: () => ({}),
   methods: {
     async handleRemove() {
       try {
-        await this.$axios.$delete(`/house_rules/${this.removeId}`, {
-          headers: {
-            Authorization: this.$store.state.user.token,
-          },
+        await this.$axios.$delete(`/house_rules/${this.id}`, {
+          headers: { Authorization: this.$store.state.user.token },
         })
         this.$bvToast.toast('HouseRule deleted successfully!', {
           title: 'Success',
