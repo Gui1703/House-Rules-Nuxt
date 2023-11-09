@@ -8,12 +8,12 @@
     </b-card-title>
 
     <b-card-text>
-      <b-form class="login-form needs-validation" @submit="onSubmit">
+      <b-form class="login-form needs-validation" @submit.prevent="onSubmit">
         <InputComponent
           v-model="form.email"
           label="Email"
-          required
           type="email"
+          required
         />
 
         <InputComponent

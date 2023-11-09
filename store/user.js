@@ -22,8 +22,8 @@ export const getters = {
 }
 
 export const actions = {
-  loginUser(context, user) {
-    return this.$axios.$post('/login_json', user).then((res) => {
+  async loginUser(context, user) {
+    return await this.$axios.$post('/login_json', user).then((res) => {
       context.commit('login', res.data.result)
       return res
     })
