@@ -30,9 +30,11 @@ export default {
   padding-inline: 2.25rem;
   padding-block: 1.25rem;
 }
+
 .navbar .logo {
   height: 100%;
 }
+
 .logout-icon {
   color: #fb3b11;
   font-size: 1.5rem;

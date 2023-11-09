@@ -1,7 +1,7 @@
 <template>
-  <div class="select">
+  <div>
     <label :for="name">{{ label }}</label>
-    <select :id="name" v-model="model">
+    <select class="form-control" :id="name" v-model="model">
       <option
         v-for="(option, index) in options"
         :key="index"
@@ -17,18 +17,9 @@
 export default {
   name: 'SelectComponent',
   props: {
-    value: {
-      type: [String, Number],
-      default: undefined,
-    },
-    label: {
-      type: String,
-      default: '',
-    },
-    options: {
-      type: Array,
-      default: () => [],
-    },
+    value: { type: [String, Number], default: undefined },
+    label: { type: String, default: '' },
+    options: { type: Array, default: () => [] },
   },
   computed: {
     name() {
@@ -45,14 +36,3 @@ export default {
   },
 }
 </script>
-
-<style scoped>
-.select {
-  display: grid;
-}
-.select select {
-  padding: 0.5rem;
-  border-radius: 0.25rem;
-  border: 1px solid black;
-}
-</style>

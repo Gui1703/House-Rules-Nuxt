@@ -23,7 +23,10 @@
           required
         />
 
-        <ButtonComponent type="submit" block>Login</ButtonComponent>
+        <ButtonComponent type="submit" block>
+          <b-spinner class="align-middle spinner-border-sm" v-if="loading" />
+          Login
+        </ButtonComponent>
       </b-form>
     </b-card-text>
   </b-card>
@@ -32,15 +35,13 @@
 <script>
 export default {
   name: 'IndexPage',
-  data: () => ({
-    form: {
-      email: '',
-      password: '',
-    },
-  }),
+  data: () => ({ form: { email: '', password: '' }, loading: false }),
   methods: {
     async onSubmit(event) {
       event.preventDefault()
+
+      this.loading = true
+
       await this.$store
         .dispatch('user/loginUser', {
           login: { email: this.form.email, password: this.form.password },
@@ -51,7 +52,7 @@ export default {
             variant: 'success',
           })
 
-          setTimeout(() => this.$router.push('/house-rules'), 2000)
+          setTimeout(() => this.$router.push('/house-rules'), 2200)
         })
         .catch((e) => {
           this.$bvToast.toast(e.response.data.data, {
@@ -59,6 +60,8 @@ export default {
             variant: 'danger',
           })
         })
+
+      this.loading = false
     },
   },
 }
@@ -71,9 +74,11 @@ export default {
   justify-content: space-between;
   align-items: center;
 }
+
 .title .pin-logo {
   height: 100%;
 }
+
 .login-form {
   display: grid;
   gap: 0.75rem;
