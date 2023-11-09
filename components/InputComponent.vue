@@ -14,6 +14,7 @@
 
 <script>
 export default {
+  name: 'InputComponent',
   props: {
     value: {
       type: [String, Number],
