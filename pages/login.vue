@@ -34,7 +34,8 @@
 
 <script>
 export default {
-  name: 'IndexPage',
+  name: 'LoginPage',
+  middleware: ['login'],
   data: () => ({ form: { email: '', password: '' }, loading: false }),
   methods: {
     async onSubmit(event) {

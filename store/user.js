@@ -1,3 +1,5 @@
+import VuexPersistence from 'vuex-persist'
+
 export const state = () => ({
   information: {},
   token: '',
@@ -29,3 +31,5 @@ export const actions = {
     })
   },
 }
+
+export const plugins = [new VuexPersistence().plugin]

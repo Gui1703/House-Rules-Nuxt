@@ -1,5 +1,8 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
+
+  ssr: false,
+
   head: {
     title: 'house_rules',
     htmlAttrs: {
@@ -49,7 +52,7 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: { baseURL: 'https://sys-dev.searchandstay.com/api/admin' },
 
-  router: { middleware: ['auth'] },
+  router: { middleware: ['auth', 'login'] },
 
   bootstrapVue: { icons: true },
 
